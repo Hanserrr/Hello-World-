@@ -10,3 +10,25 @@ function output(item,index) {
    alert(index+":"+item)
 }
 each(arr, output); 
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+function getObjectLength(obj){
+	var a=0;
+	for(var i in obj){
+		a++;
+	}
+	return a;
+}
+
+var obj = {
+    a: 1,
+    b: 2,
+    c: {
+        c1: 3,
+        c2: 4
+    }
+};
+
+console.log(getObjectLength(obj)); 
+
