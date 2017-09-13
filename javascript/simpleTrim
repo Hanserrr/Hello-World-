@@ -1,0 +1,20 @@
+function simpleTrim(src){
+	function trim(a){
+		var arr=a.split("");
+		for(var i=0;i<arr.length;i++){
+			if(arr[i]==" "){
+				arr.splice(i,1);
+				i--;
+			}
+			else
+			break;
+		}
+	arr.reverse();
+	return arr.join("");
+	}
+var b=trim(trim(src));
+return b;
+}
+
+/*var a="  afdsaf  asf a ";
+document.write("abc"+simpleTrim(a)+"abc");*/
