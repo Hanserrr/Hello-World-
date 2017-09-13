@@ -1,0 +1,12 @@
+function each(arr,fn){
+	for(var i=0;i<arr.length;i++){
+		each[i]=arr[i]
+		fn(each[i],i);
+	}
+}
+
+var arr = ['java', 'c', 'php', 'html'];
+function output(item,index) {
+   alert(index+":"+item)
+}
+each(arr, output); 
