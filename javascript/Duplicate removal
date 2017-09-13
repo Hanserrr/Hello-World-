@@ -1,0 +1,18 @@
+function uniqArray(arr){
+	var unarr=new Array;
+	for(var i=0;i<arr.length;i++){
+	unarr[i]=arr[i];
+		for(var j=0;j<i;j++){
+			if(unarr[j]==unarr[i]){
+				unarr.splice(i,1);
+				arr.splice(i,1);
+				i--;
+			}
+		}
+	}
+	
+	return unarr;
+}
+var a=[1,3,4,5,5,7,3];
+var b=uniqArray(a);
+alert(b);
