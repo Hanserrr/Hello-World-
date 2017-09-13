@@ -1,0 +1,8 @@
+function isEmail(a){
+	var re=/^\w+@[a-z0-9]+\.[a-z]+$/i;
+	if(re.test(a))
+		alert('right');
+		alert('wrong');
+}
+var emailStr=" safsdfa4@yahoo.com";
+isEmail(emailStr);
