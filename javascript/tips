@@ -4,4 +4,7 @@ var a=12;
 alert(typeof(a)="number");
 
 var dstObj=JSON.parse(JSON.stringify(srcObj));
+
+str.split("");    string-->array
+arr.join("");     array-->string
 -----------------------------------------------------------------------------------------------------------------------------------
