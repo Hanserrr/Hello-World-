@@ -60,3 +60,25 @@ function removeClass(element,oldClassName){
 removeClass('ul1','li2');
 </script>
 </body>
+
+
+③<script>
+function getPosition(element) {
+	var oDiv=document.getElementById(element);
+	var obj={
+		x:oDiv.offsetLeft,
+		y:oDiv.offsetTop
+	}
+	console.log(obj);
+}
+	
+</script>				
+</head>
+
+<body style="margin:0;padding:0">
+<div id="block" style="position:absolute;left:800px;top:400px;width:300px;height:200px;background:red"></div>
+
+<script>
+getPosition('block');
+console.log(document.body.offsetWidth);
+</script>	
