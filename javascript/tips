@@ -1,5 +1,5 @@
 17.9.13
-----------------------------------------------------------------------------------------------------------------------------------
+
 var a=12;
 alert(typeof(a)="number");
 
@@ -8,6 +8,8 @@ var dstObj=JSON.parse(JSON.stringify(srcObj));
 str.split("");    string-->array
 arr.join("");     array-->string
 -----------------------------------------------------------------------------------------------------------------------------------
+17.9.15
+
 <script>				
 function addClass(element,newClassName){
 	var oDiv=document.getElementById(element);
