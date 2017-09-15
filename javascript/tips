@@ -6,7 +6,7 @@ alert(typeof(a)="number");
 var dstObj=JSON.parse(JSON.stringify(srcObj));
 
 str.split("");    string-->array
-arr.join("");     array-->string
+var str=arr.join("");     array-->string
 -----------------------------------------------------------------------------------------------------------------------------------
 17.9.15
 
