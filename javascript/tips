@@ -8,3 +8,25 @@ var dstObj=JSON.parse(JSON.stringify(srcObj));
 str.split("");    string-->array
 arr.join("");     array-->string
 -----------------------------------------------------------------------------------------------------------------------------------
+<script>				//div1		abc
+function addClass(element,newClassName){
+	var oDiv=document.getElementById(element);
+	var oCls=document.createElement(newClassName);
+	oDiv.appendChild(oCls);
+}
+</script>
+
+<style>
+div {width:200px;height:300px;background:red}
+</style>
+</head>
+
+<body>
+<ul id="ul1">
+</ul>
+
+<script>				
+
+addClass('ul1','div');
+
+</script>
