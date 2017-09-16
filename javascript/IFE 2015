@@ -1,0 +1,84 @@
+<script>
+var obj=document.getElementsByTagName("*");
+function $(selector,exselector)
+{
+	if(!exselector)
+  {
+	var arr=selector.split("");
+	
+	if(arr[0]=='#')
+	{
+		var sId=selector.substr(1);
+		var oAdom=document.getElementById(sId);
+		return oAdom;
+	}
+	
+  else if(arr[0]=='.'){
+		var sId=selector.substr(1);
+		for(var i in obj){
+			if(obj[i].className==sId)
+			return obj[i];
+		}
+	}
+	
+  else if(arr[0]=='[')
+	{
+	  var sId=selector.substr(1,selector.length-2);	
+		
+		if(sId.match(/(\S*)=\d*/))
+		{
+			var cla=sId.match(/(\S*)=\d*/)[1];
+			var val=sId.match(/\d*=(\S*)/)[1];
+		
+			for(var i in obj)
+			{
+				if(obj[i].getAttribute(cla)==val)
+					return obj[i];
+			}
+		}
+	  else
+		{	
+			for(var i in obj)
+			{
+				if(!obj[i].attributes[sId]);
+				else
+				break;
+			}
+			return obj[i];
+		}
+	}
+	
+  else
+	{
+		var a=document.createElement(selector);
+		return a;
+	}
+	}
+	
+  else
+	{
+		obj=$(selector).children;
+		
+		return $(exselector);
+	}
+}
+</script>				
+</head>
+<body style="margin:0;padding:0">
+  <div id='abc'></div>
+  <ul id="ul1">
+	  <li id="li1">sadvassad<a href="java:">hide</a></li>
+      <li id="li2" data-log>ssagf<a href="java:">hide</a></li>
+      <li data-log="2015">dsgxc c<a href="java:">hide</a></li>
+      <li class="li4">sdf<a href="java:">hide</a></li>
+      <li class="li5">sadvassad<a href="java:">hide</a></li>
+      <li class="oli">ssagf<a href="java:">hide</a></li>
+  </ul>
+<script>
+$('#abc');
+$('.oli');
+$('[data-log]');
+$('a');
+
+console.log($('#ul1','[data-log=2015]'));
+</script>	
