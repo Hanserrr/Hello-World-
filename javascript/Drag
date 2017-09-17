@@ -9,14 +9,14 @@ window.onload=function()
 		{
 			var l=event.clientX-disX;
 			var t=event.clientY-disY;
-			if(l<0)
+			if(l<50)
 				l=0;
-			else if(l>document.documentElement.clientWidth-div1.offsetWidth)
-				l=document.documentElement.clientWidth-div1.offsetWidth;
-			if(t<0)
+			else if(l>div2.offsetWidth-div1.offsetWidth-50)
+				l=div2.offsetWidth-div1.offsetWidth;
+			if(t<50)
 				t=0;
-			else if(t>document.documentElement.clientHeight-div1.offsetHeight)
-				t=document.documentElement.clientHeight-div1.offsetHeight;
+			else if(t>div2.offsetHeight-div1.offsetHeight-50)
+				t=div2.offsetHeight-div1.offsetHeight;
 			div1.style.left=l+'px';
 			div1.style.top=t+'px';
 		}
@@ -31,11 +31,13 @@ window.onload=function()
 
 <style>
 * {margin:0;padding:0}
-div {width:100px;height:100px;background:#ccc;position:absolute}
+#div1 {width:100px;height:100px;background:red;position:absolute}
+#div2 {width:800px;height:500px;background:#ccc;position:relative}
 </style>				
 </head>
 
 <body>
-<div id="div1">
+<div id="div2">
+<div id="div1"></div>
 </div>
 </body>
