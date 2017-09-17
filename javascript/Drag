@@ -1,0 +1,41 @@
+<script>
+window.onload=function()
+{
+  div1.onmousedown=function()
+	{
+		var disX=event.clientX-div1.offsetLeft;
+		var disY=event.clientY-div1.offsetTop;
+		document.onmousemove=function()
+		{
+			var l=event.clientX-disX;
+			var t=event.clientY-disY;
+			if(l<0)
+				l=0;
+			else if(l>document.documentElement.clientWidth-div1.offsetWidth)
+				l=document.documentElement.clientWidth-div1.offsetWidth;
+			if(t<0)
+				t=0;
+			else if(t>document.documentElement.clientHeight-div1.offsetHeight)
+				t=document.documentElement.clientHeight-div1.offsetHeight;
+			div1.style.left=l+'px';
+			div1.style.top=t+'px';
+		}
+		document.onmouseup=function()
+		{
+			document.onmousemove=null;
+			document.onmouseup=null;
+		}
+	}
+}
+</script>
+
+<style>
+* {margin:0;padding:0}
+div {width:100px;height:100px;background:#ccc;position:absolute}
+</style>				
+</head>
+
+<body>
+<div id="div1">
+</div>
+</body>
