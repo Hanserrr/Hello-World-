@@ -109,4 +109,8 @@ function addEnterEvent(element,listener)
 			listener();
 	});
 }
+function a()
+{
+	alert('abc')
+}
 </script>
