@@ -1,5 +1,5 @@
 17.9.16
----------------------------------------------------------------------------------------------------------------------------------------
+
 for(var i in obj)
 			{
 				if(!obj[i].attributes[sId]);
@@ -7,3 +7,16 @@ for(var i in obj)
 				break;
 			}
 			return obj[i];
+---------------------------------------------------------------------------------------------------------------------------------------
+17.9.18
+
+function a(item)
+{
+	item.addEventListener('click',clickListener)
+}
+	
+window.onload=function init()
+{
+	each(list.getElementsByTagName('li'),function(){a});
+	addClickEvent(btn,renderList);
+}
