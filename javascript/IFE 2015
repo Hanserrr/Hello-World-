@@ -84,3 +84,27 @@ $('a');
 
 console.log($('#ul1','[data-log=2015]'));
 </script>	
+
+--------------------------------------------------------------------------------------------------------------------------------------
+Event
+
+function addEvent(element,event,listener)
+{
+	element.addEventListener(event,listener);
+}
+function removeEvent(element,event,listener)
+{
+	element.removeEventListener(event,listener);
+}
+function addClickEvent(element,listener)
+{
+	element.addEventListener('click',listener);
+}
+function addEnterEvent(element,listener) 
+{
+	element.addEventListener('keydown',function()
+	{
+		if(event.keyCode==13)
+			listener();
+	});
+}
