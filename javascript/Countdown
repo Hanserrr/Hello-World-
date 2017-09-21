@@ -13,6 +13,7 @@ window.onload=function()
 		{
 			btn.onclick=function click()
 			{
+				clearInterval(timer);
 				var arr=txt1.value.split("-");
 				var oDate=new Date();
 				var nYear=oDate.getFullYear();
@@ -21,23 +22,23 @@ window.onload=function()
 				var nHour=oDate.getHours();
 				var nMinute=oDate.getMinutes();
 				var nSecond=oDate.getSeconds();
-				var a=((arr[0]-nYear)*365.2422+(arr[1]-nMonth)*365.2422/12+(arr[2]-nDay))*86400
+				var a=((eval(arr[0])-nYear-1)*365.2422+(11+eval(arr[1])-nMonth)*365.2422/12+(365.2422/12+eval(arr[2])-nDay))*86400;
 				var b=a-86400+(23-nHour)*3600+(59-nMinute)*60+(60-nSecond);
-				function show()
-				{
-				var day=parseInt(b/86400)
-				var hour=parseInt(b%86400/3600)
-				var minute=parseInt((b-day*86400-hour*3600)/60)
-				var second=b-day*86400-hour*3600-minute*60;
+				var day=parseInt(b/86400);
+				var hour=parseInt(b%86400/3600);
+				var minute=parseInt((b-day*86400-hour*3600)/60);
+				var second=parseInt(b-day*86400-hour*3600-minute*60);
 				txt2.value="距离"+arr[0]+'年'+arr[1]+'月'+arr[2]+'日还有'+day+'天'+hour+'小时'+minute+'分'+second+'秒';
-				}
-				show();
 				timer=setInterval(function()
 				{
 					b--;
-					show();
+					day=parseInt(b/86400)
+					hour=parseInt(b%86400/3600)
+					minute=parseInt((b-day*86400-hour*3600)/60)
+					second=parseInt(b-day*86400-hour*3600-minute*60);
+					txt2.value="距离"+arr[0]+'年'+arr[1]+'月'+arr[2]+'日还有'+day+'天'+hour+'小时'+minute+'分'+second+'秒';;
 				},1000)
-				if(day==hour==minute==second==0)
+				if(b==0)
 					clearInterval(timer);
 			}
 		}
