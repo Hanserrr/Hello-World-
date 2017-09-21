@@ -37,6 +37,8 @@ window.onload=function()
 					b--;
 					show();
 				},1000)
+				if(day==hour==minute==second==0)
+				clearInterval(timer);
 			}
 		}
 	}
