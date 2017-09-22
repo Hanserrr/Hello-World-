@@ -114,3 +114,22 @@ function a()
 	alert('abc')
 }
 </script>
+
+----------------------------------------------------------------------------------------------------------------------------------------
+17.9.22
+
+var i=0;
+	function doSetTimeout()
+	{
+		i++;
+		if(i<oLi.length)
+		{	
+			setTimeout(function()
+			{
+				startMove(div1.offsetLeft-div0.offsetWidth);
+				doSetTimeout();
+			},2000)
+		}
+	}
+	doSetTimeout();
+
