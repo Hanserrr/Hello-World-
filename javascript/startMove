@@ -56,7 +56,7 @@ function startMove2(obj,iTarget)
 </head>
 
 <body>
-<div id='div1'></div>
+<div></div>
 <div></div>
 <div></div>
 <div></div>
