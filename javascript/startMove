@@ -1,0 +1,63 @@
+<style>
+div {background:#39c5bb;opacity:0.3;
+width:200px;height:200px;margin:20px;}
+</style>
+<script>
+window.onload=function()
+{
+	var oDiv=document.getElementsByTagName('div');
+	for(var i in oDiv)
+	{
+		oDiv[i].alpha=30;
+		oDiv[i].onmouseover=function()
+		{
+			startMove(this,100);
+			startMove2(this,400)
+		}
+		oDiv[i].onmouseout=function()
+		{
+			startMove(this,30);
+			startMove2(this,200)
+		}
+	}
+}
+
+function startMove(obj,iTarget)
+{
+	clearInterval(obj.timer);
+	obj.timer=setInterval(function()
+	{
+		var speed=(iTarget-obj.alpha)/6;
+		speed=speed>0?Math.ceil(speed):Math.floor(speed);
+		if(iTarget==obj.alpha)
+			clearInterval(obj.timer);
+		else
+		{
+			obj.alpha+=speed;
+			obj.style.opacity=obj.alpha/100;
+		}
+	},30)
+}
+
+function startMove2(obj,iTarget)
+{
+	clearInterval(obj.timer1);
+	obj.timer1=setInterval(function()
+	{
+		var speed=(iTarget-obj.offsetWidth)/4;
+		speed=speed>0?Math.ceil(speed):Math.floor(speed);
+		if(iTarget==obj.offsetWidth)
+			clearInterval(obj.timer1);
+		else
+			obj.style.width=obj.offsetWidth+speed+'px';
+	},30)
+}
+</script>
+</head>
+
+<body>
+<div id='div1'></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
