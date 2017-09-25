@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8>
+<title></title>
+
+<style>
+* {margin:0;padding:0;}
+body {background:#93d6d6;}
+#wrap {width:400px;height:436px;margin:100px auto;background:#ccc;position:relative;}
+.big_pic {width:400px;height:320px;list-style:none;position:relative;z-index: 0}
+.big_pic li {width:400px;height:320px;position:absolute;overflow: hidden}
+.big_pic img {border:0;}
+.small_pic {width:400px;height:116px;position:relative;overflow: hidden}
+.small_pic ul {width:800px;height:96px;position:absolute;margin:10px;}
+.small_pic li {width:auto;height:auto;list-style:none;float:left;opacity:0.6;}
+.small_pic img {width:120px;margin-right:10px;}
+.mark_left,.mark_right {width:200px;height:320px;opacity:0.4;position:absolute;z-index: 1}
+.mark_left {left:0;}
+.mark_right {left:200px;}
+.btn_left,.btn_right {width:60px;height:60px;position:absolute;top:130px;z-index: 1;opacity: 0;}
+.btn_left {background: url(img/btn.gif) 0 0 no-repeat;left:20px;}
+.btn_right {background: url(img/btn.gif) 0 -60px no-repeat;right:20px;}
+.btn_wrap {width:400px;height:320px;position:absolute;}
+</style>
+
+<script src='startMove.js'></script>
+
+<script>
+function getClass(classname)
+	{
+		var obj=document.getElementsByTagName('*');
+		var aResult=[];
+		for(var i=0;i<obj.length;i++)
+		{
+			if(obj[i].className==classname)
+				aResult.push(obj[i]);
+		}
+		return aResult;
+	}
+window.onload=function()
+{
+	var oBtnPrev=getClass('btn_left')[0]
+	var oBtnNext=getClass('btn_right')[0]
+	var oMarkLeft=getClass('mark_left')[0]
+	var oMarkRight=getClass('mark_right')[0]
+	var oUlBig=getClass('big_pic')[0]
+	var oLiBig=oUlBig.getElementsByTagName('li')
+	var oDivSmall=getClass('small_pic')[0]
+	var oUlSmall=oDivSmall.getElementsByTagName('ul')[0]
+	var oLiSmall=oDivSmall.getElementsByTagName('li')
+
+//左右箭头
+	oBtnPrev.onmouseover=oMarkLeft.onmouseover=function()
+	{
+		startMove(oBtnPrev,'opacity',60);
+	}
+	oBtnPrev.onmouseout=oMarkLeft.onmouseout=function()
+	{
+		startMove(oBtnPrev,'opacity',0);
+	}
+	oBtnNext.onmouseover=oMarkRight.onmouseover=function()
+	{
+		startMove(oBtnNext,'opacity',60);
+	}
+	oBtnNext.onmouseout=oMarkRight.onmouseout=function()
+	{
+		startMove(oBtnNext,'opacity',0);
+	}
+  
+//大图滚动
+	var nowZIndex=2;
+	var i=0;
+	var now=0;	
+	startMove(oLiSmall[0],'opacity',100);
+	for(i=0;i<oLiSmall.length;i++)
+	{
+		oLiSmall[i].index=i;		
+		oLiSmall[i].onclick=function()
+		{	
+			if(this.index==now)
+				return;
+			now=this.index;
+			tab();
+		}
+		oLiSmall[i].onmouseover=function()
+		{
+			startMove(this,'opacity',100);
+		}
+		oLiSmall[i].onmouseout=function()
+		{
+			if(this.index!=now)
+				startMove(this,'opacity',60);
+		}
+	}
+	function tab()
+	{
+		oLiBig[now].style.zIndex=nowZIndex++;
+		for(var i=0;i<oLiSmall.length;i++)
+		{
+			startMove(oLiSmall[i],'opacity',60);
+		}
+		startMove(oLiSmall[now],'opacity',100);
+		oLiBig[now].style.height=0;
+		startMove(oLiBig[now],'height',320);
+		if(now==0)
+			startMove(oUlSmall,'left',0);
+		else if(now==5)
+			startMove(oUlSmall,'left',-3*130);
+		else
+			startMove(oUlSmall,'left',-(now-1)*130);
+	}
+  
+//按钮事件	
+	oBtnPrev.onclick=function()
+	{
+		now--;
+		if(now==-1)
+			now=oLiSmall.length-1;
+		tab();
+	}
+	oBtnNext.onclick=function()
+	{
+		now++;
+		if(now==oLiSmall.length)
+			now=0;
+		tab();
+	}
+
+//小图滚动
+	var timer=setInterval(oBtnNext.onclick,2000);
+
+//移入暂停
+	wrap.onmouseover=function()
+	{
+		clearInterval(timer);
+	}
+	wrap.onmouseout=function()
+	{
+		timer=setInterval(oBtnNext.onclick,2000);
+	}	
+}
+</script>
+
+</head>
+<body>
+	<div id='wrap'>
+		<div class='btn_wrap'>
+			<div class='mark_left'></div>
+			<div class='mark_right'></div>
+			<div class='btn_left'></div>
+			<div class='btn_right'></div>
+		</div>
+		<ul class='big_pic'>			
+			<li style='z-index: 1'><img src='img/1.jpg'></li>
+			<li><img src='img/2.jpg'></li>
+			<li><img src='img/3.jpg'></li>
+			<li><img src='img/4.jpg'></li>
+			<li><img src='img/5.jpg'></li>
+			<li><img src='img/6.jpg'></li>
+		</ul>
+		<div class='small_pic'>
+			<ul>
+				<li><img src='img/1.jpg'></li>
+				<li><img src='img/2.jpg'></li>
+				<li><img src='img/3.jpg'></li>
+				<li><img src='img/4.jpg'></li>
+				<li><img src='img/5.jpg'></li>
+				<li><img src='img/6.jpg'></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
