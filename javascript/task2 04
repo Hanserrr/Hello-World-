@@ -1,0 +1,110 @@
+<style>
+* {margin:0;padding:0;}
+ul {width:500px;height:300px;border:1px solid black;display: none;list-style:none;}
+ul li {display:none;}
+input {width:500px;height:30px;}
+ul .active {display:block;}
+ul .gray {background:#ccc;}
+</style>
+<script type="text/javascript">
+window.onload=function()
+{
+	var oLi=ul1.getElementsByTagName('li');
+	var i=0;
+	var now=-1;
+	var arr=ul1.getElementsByClassName('active');
+
+//Up&Down
+	txt1.onkeydown=function()
+	{
+		if(event.keyCode==38)	
+		{
+			if(now>0)
+			{
+				event.preventDefault();
+				for(i=0;i<arr.length;i++)
+				{
+					arr[i].style.backgroundColor='white';
+				}	
+				now--;
+			}
+			else
+				now=0;
+			arr[now].style.backgroundColor='#CCC';
+		}
+		else if(event.keyCode==40)
+		{	
+			if(now<arr.length-1)
+			{
+				event.preventDefault();
+				for(i=0;i<arr.length;i++)
+				{
+					arr[i].style.backgroundColor='white';
+				}	
+				now++;
+			}
+			else
+				now=arr.length-1;
+			arr[now].style.backgroundColor='#CCC';
+		}
+	}
+
+//Enter&Red
+	txt1.onkeyup=function()
+	{
+		if(event.keyCode==13)
+		{
+			txt1.value=oLi[now].innerHTML.replace(/<[^<>]+>/g,'');
+			ul1.style.display='none';
+			return;
+		}
+		for(var i=0;i<oLi.length;i++)
+		{
+			oLi[i].innerHTML=oLi[i].innerHTML.replace(/<[^<>]+>/g,'');
+			var text=oLi[i].innerHTML.substring(0,txt1.value.length)
+			if(txt1.value==text)
+			{
+				if(text)
+					oLi[i].innerHTML=oLi[i].innerHTML.replace(text,"<span style='color:red'>"+text+"</span>");
+				ul1.style.display='block';
+				oLi[i].className='active';
+			}
+			else
+				oLi[i].className='';
+		}
+		if(txt1.value=='')
+			ul1.style.display='none';
+		else
+			ul1.style.display='block';
+	}
+
+//Click&mouserover out
+	for(i=0;i<oLi.length;i++)
+	{
+		oLi[i].onmouseover=function()
+		{
+			this.style.backgroundColor='#CCC';
+		}
+		oLi[i].onmouseout=function()
+		{
+			this.style.backgroundColor='white';
+		}
+		oLi[i].onclick=function()
+		{
+			this.innerHTML=this.innerHTML.replace(/<[^<>]+>/g,'');
+			txt1.value=this.innerHTML;
+			ul1.style.display='none';
+		}
+	}
+}
+</script>
+</head>
+<body>
+<input type='text' id='txt1'/>
+<ul id='ul1'>
+	<li>Text1</li>
+	<li>Text234</li>
+	<li>Text132432</li>
+	<li>Texthahah</li>
+</ul>
+</body>
