@@ -1,0 +1,73 @@
+<script type="text/javascript">
+window.onload=function()
+{
+	var oLi=ul1.getElementsByTagName('li')
+	for(var i=0;i<oLi.length;i++)
+	{
+		var disX=0;
+		var disY=0;
+		oLi[i].top=oLi[i].offsetTop;
+		oLi[i].onmousedown=function(ev)
+		{
+			var oEvent=ev||event;
+			disX=oEvent.clientX-this.offsetLeft;
+			disY=oEvent.clientY-this.offsetTop;
+			startMove(this,{opacity:30});
+			var thamt=this;
+			document.onmousemove=function(ev)
+			{
+				var oEvent=ev||event;	
+				console.log('l='+l+' t='+t)
+				var l=oEvent.clientX-disX;
+				var t=oEvent.clientY-disY;			
+				console.log('l='+l+' t='+t)
+				if(l<310&&l>290)
+				{
+					l=298;			
+					for(var j=0;j<8;j++)
+					{
+						if(t<50*j+10&&t>50*j-10)
+							t=50*j-1;
+					}
+				}
+				if(l<10&&l>-10)
+				{
+					l=0;		
+					for(var j=0;j<8;j++)
+					{
+						if(t<50*j+10&&t>50*j-10)
+							t=50*j-1;
+					}
+				}
+				var T=t-that.top;
+				that.style.left=l+'px';
+				that.style.top=T+'px';
+			}
+			document.onmouseup=function()
+			{
+				startMove(that,{opacity:100})
+				document.onmousemove=null;
+				document.onmouseup=null;
+			}
+		}
+	}
+}
+
+</script>
+</head>
+<body>
+<div id='wrap'>
+	<div id='div0'>
+		<ul id='ul1'>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<ul id='ul2'></ul>
+	</div>
+</div>
